@@ -3,10 +3,10 @@ from django.db import models
 MAX_LENGTH = 120
 
 MONITORED = (
-    ('suggested_prices', 'Prix suggéré'),
-    ('yhat', 'Prévision'),
-    ('error', 'Erreur'),
-    ('available_resources', 'Stock disponible'),
+    ("suggested_prices", "Prix suggéré"),
+    ("yhat", "Prévision"),
+    ("error", "Erreur"),
+    ("available_resources", "Stock disponible"),
 )
 
 class Alert(models.Model):
@@ -18,4 +18,4 @@ class Alert(models.Model):
     data = models.CharField(max_length=MAX_LENGTH, choices=MONITORED)
     zone = models.CharField(max_length=MAX_LENGTH, null=True)
     category = models.CharField(max_length=MAX_LENGTH, null=True)
-    segment = models.CharField(max_length=MAX_LENGTH, null=True)
+    condition = models.CharField(max_length=10)
