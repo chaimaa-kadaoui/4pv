@@ -40,8 +40,10 @@ def check_date(alert, date):
     return (alert.start_date <= date) and (alert.end_date >= date)
 
 
-def check_condition(alert, date):
+def check_condition(alert, date=None):
     date_field = DATE_FIELD[alert.data]
+    if date is None:
+        date = datetime.now().strftime("%Y-%m-%d")
     if not check_date(alert, date):
         print("{date} is out of alert {id}'s date range".format(date=date, id=alert.id))
         return

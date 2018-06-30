@@ -9,7 +9,7 @@ REDIS_PORT = 6379
 REDIS_DB = 0
 
 
-class Manager(object):
+class RedisManager(object):
     def __init__(self):
         self.redis = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
@@ -26,4 +26,4 @@ class Manager(object):
             return value
 
 
-manager = Manager()
+manager = RedisManager()

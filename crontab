@@ -1,0 +1,2 @@
+0 3 * * * /opt/alertsystem/run.sh
+# Empty line at the end must be kept

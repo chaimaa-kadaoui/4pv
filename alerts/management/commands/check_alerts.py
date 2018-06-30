@@ -14,9 +14,9 @@ def get_end_of_day():
 class Command(BaseCommand):
     def add_arguments(self, parser):
         # Positional arguments
-        parser.add_argument("date", type=str)
+        parser.add_argument("--date", type=str)
 
     def handle(self, *args, **options):
-        active_alerts = [alert.id for alert in Alert.objects.all() if alert.is_active(options["date"])]
+        active_alerts = [alert.id for alert in Alert.objects.all() if alert.is_active(options.get("date"))]
         print("{cnt} alert(s) is/are active today".format(cnt=len(active_alerts)))
         manager.set("active-alerts", active_alerts, get_end_of_day())
