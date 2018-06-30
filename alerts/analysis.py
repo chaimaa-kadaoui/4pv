@@ -43,7 +43,7 @@ def check_date(alert, date):
 def check_condition(alert, date):
     date_field = DATE_FIELD[alert.data]
     if not check_date(alert, date):
-        print("{date} is out of alert {id} date range".format(date=date, id=alert.id))
+        print("{date} is out of alert {id}'s date range".format(date=date, id=alert.id))
         return
     data = read_and_filter_data(alert)
     if len(data) == 0:
