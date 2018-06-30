@@ -19,3 +19,7 @@ class Alert(models.Model):
     zone = models.CharField(max_length=MAX_LENGTH, null=True)
     category = models.CharField(max_length=MAX_LENGTH, null=True)
     condition = models.CharField(max_length=10)
+
+    def is_active(self, date):
+        print(date)
+        return True
