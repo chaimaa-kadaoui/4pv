@@ -1,9 +1,11 @@
 from django.db import models
 
+from alerts.analysis import check_condition
+
 MAX_LENGTH = 120
 
 MONITORED = (
-    ("suggested_prices", "Prix suggéré"),
+    ("suggested_price", "Prix suggéré"),
     ("yhat", "Prévision"),
     ("error", "Erreur"),
     ("available_resources", "Stock disponible"),
@@ -21,5 +23,4 @@ class Alert(models.Model):
     condition = models.CharField(max_length=10)
 
     def is_active(self, date):
-        print(date)
-        return True
+        return check_condition(self, date)

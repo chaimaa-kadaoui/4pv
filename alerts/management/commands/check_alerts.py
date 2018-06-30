@@ -20,5 +20,6 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         active_alerts = [alert.id for alert in Alert.objects.all() if alert.is_active(options["date"])]
+        print("{cnt} alert(s) is/are active today".format(cnt=len(active_alerts)))
         r.set("active-alerts", json.dumps(active_alerts))
         r.expireat("active-alerts", int(get_end_of_day()))

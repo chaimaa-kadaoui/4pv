@@ -1,6 +1,6 @@
 base_alert = {
         "start_date": "2019-01-01",
-        "end_date": "2019-01-03",
+        "end_date": "2019-03-01",
         "category": "PEL",
         "zone": "R320-Z001"
     }
@@ -8,7 +8,7 @@ base_alert = {
 base_name = "{data}-first-quarter-2019-PEL-R320-Z001-alert"
 
 data_threshs = [
-    ["suggested_prices", 91.53],
+    ["suggested_price", 91.53],
     ["available_resources", 39]
 ]
 
