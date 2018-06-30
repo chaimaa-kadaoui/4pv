@@ -17,8 +17,10 @@ class AlertDetail(generics.RetrieveUpdateDestroyAPIView):
 
 
 class ActiveAlertDetail(generics.ListCreateAPIView):
-    try:
-        queryset = Alert.objects.filter(id__in=manager.get("active-alerts"))
-    except TypeError:
-        queryset = Alert.objects.none()
     serializer_class = AlertSerializer
+
+    def get_queryset(self):
+        try:
+            return Alert.objects.filter(id__in=manager.get("active-alerts"))
+        except TypeError:
+            return Alert.objects.none()
