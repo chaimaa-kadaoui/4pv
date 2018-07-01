@@ -22,7 +22,7 @@ You can also provide a specific date: `python3 manage.py check_alerts --date 201
 
 * Build using docker `docker build -t alert-system .`
 * Run the image providing the date of the checks `docker run -p 8000:8000 -d alert-system ./run.sh 2019-02-17` <br>
-You can leave it blank for today
+You can leave it blank for today `docker run -p 8000:8000 -d alert-system ./run.sh`
 * Request the API to manage alerts
 
 ## Alert model
