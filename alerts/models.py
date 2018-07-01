@@ -1,6 +1,9 @@
 from django.db import models
+from django.db.models.signals import pre_delete
+from django.dispatch import receiver
 
 from alerts.analysis import check_condition
+from alerts.redis_manager import manager
 
 MAX_LENGTH = 120
 
@@ -24,3 +27,13 @@ class Alert(models.Model):
 
     def is_active(self, date):
         return check_condition(self, date)
+
+
+@receiver(pre_delete)
+def delete_from_active(sender, instance, **kwargs):
+    # When an alert is removed, checks if it is stored as active in Redis
+    if sender == Alert:
+        active = manager.get("active-alerts")
+        if instance.id in active:
+            active.remove(instance.id)
+            manager.set("active-alerts", active)
