@@ -23,7 +23,7 @@ RUN python3 manage.py create_alerts
 EXPOSE 8000
 
 ## Crons
-ADD crontab /etc/cron.d/crontab
+ADD scripts/crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
 RUN touch /var/log/cron.log
 RUN /usr/bin/crontab /etc/cron.d/crontab
