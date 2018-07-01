@@ -10,7 +10,7 @@ Using *python3*, *django* and *django REST framework*
 
 * `pip3 install -r requirements.txt`
 * [optional] Run `python3 manage.py create_alerts` to create the alerts described 
-in [alerts/management/commands/alert_config.py](alert_config.py) or you can create your own alerts after running the server <br>
+in [alert_config.py](alerts/management/commands/alert_config.py) or you can create your own alerts after running the server <br>
 * Run `python3 manage.py check_alerts` to check active alerts. 
 You can also provide a specific date `python3 manage.py check_alerts --date 2019-02-17`
 * Run `python3 manage.py runserver` to launch the server. You can request the alerts API endpoints:
