@@ -7,18 +7,19 @@ base_alert = {
 
 base_name = "{data}-first-quarter-2019-PEL-R320-Z001-alert"
 
-data_threshs = [
+data_conditions = [
     ["suggested_price", "smart"],
-    ["available_resources", "smart"]
+    ["available_resources", "smart"],
+    ["yhat", "smart"]
 ]
 
 alerts = []
-for to_monitor, thresh in data_threshs:
+for to_monitor, condition in data_conditions:
     print(to_monitor)
     new_alert = base_alert.copy()  # No need for deepcopy
     new_alert.update({
         "name": base_name.format(data=to_monitor),
         "data": to_monitor,
-        "condition": thresh
+        "condition": condition
     })
     alerts.append(new_alert)

@@ -32,10 +32,12 @@ def check_condition(alert, date=None):
         print("Nothing to monitor")
         return
 
-    if alert.condition == "smart":
-        return get_smart_checks(alert)(data, filtered_data, date, date_field)
-    return below_thresh(filtered_data, alert.data, alert.condition, date, date_field)
-
+    if "yield_class_agg" in data.columns:
+        # Each segment should be checked alone
+        data_seg = [data[data["yield_class_agg"] == segment] for segment in data["yield_class_agg"].unique()]
+        results = map(lambda df: apply_condition(df, alert, filtered_data, date, date_field), data_seg)
+        return any(results)
+    return apply_condition(data, alert, filtered_data, date, date_field)
 
 
 def check_date(alert, date):
@@ -61,6 +63,12 @@ def filter_data(data, alert, date_field):
     return data
 
 
+def apply_condition(data, alert, filtered_data, date, date_field):
+    if alert.condition == "smart":
+        return get_smart_checks(alert)(data, filtered_data, date, date_field)
+    return below_thresh(filtered_data, alert.data, alert.condition, date, date_field)
+
+
 def below_thresh(df, value_field, thresh, date, date_field):
     actual_value = df.loc[df[date_field] == date, value_field].iat[0]
     return actual_value < float(thresh)
@@ -77,18 +85,22 @@ def get_thresh(df, date_field, value_field, date, method):
 
 def smart_check_stocks(df, filtered_df, date, date_field):
     thresh = get_thresh(df, date_field, "available_resources", date, "median")
-    print(thresh)
     return below_thresh(filtered_df, "available_resources", thresh, date, date_field)
 
 
 def smart_check_price(df, filtered_df, date, date_field):
     thresh = get_thresh(df, date_field, "suggested_price", date, "mean")
-    print(thresh)
     return below_thresh(filtered_df, "suggested_price", thresh, date, date_field)
+
+
+def smart_check_yhat(df, filtered_df, date, date_field):
+    thresh = get_thresh(df, date_field, "yhat", date, "mean")
+    return below_thresh(filtered_df, "yhat", thresh, date, date_field)
 
 
 def get_smart_checks(alert):
     return {
         "available_resources": smart_check_stocks,
         "suggested_price": smart_check_price,
+        "yhat": smart_check_yhat
     }[alert.data]
