@@ -45,6 +45,7 @@ For now, basic rules are applied:
 * For price: we check if the value is below the average minus the standard deviation
 * For reco: same as price but each segment is treated separately; an alert is active if one check fails for each one of the segments
 
-# TODO:
+## TODO:
 * analyze further the time series: extract repetition of patterns like weekends & period of the year
 * add authentification
+* add tests
