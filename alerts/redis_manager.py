@@ -14,12 +14,12 @@ class RedisManager(object):
         self.redis = redis.StrictRedis(host=REDIS_HOST, port=REDIS_PORT, db=REDIS_DB)
 
     def set(self, key, value, expire_at=None):
-        self.redis.set(key, json.dumps(value))
+        self.redis.set(key, json.dumps(value).encode("utf-8"))
         if expire_at is not None:
             self.redis.expireat(key, int(expire_at))
 
     def get(self, key):
-        value = self.redis.get(key)
+        value = self.redis.get(key).decode("utf-8")
         try:
             return json.loads(value)
         except TypeError:

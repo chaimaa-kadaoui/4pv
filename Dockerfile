@@ -17,9 +17,6 @@ RUN pip3 install -r requirements.txt
 RUN python3 manage.py migrate
 RUN python3 manage.py makemigrations alerts
 RUN python3 manage.py migrate
-
-
-# Binaries
 RUN python3 manage.py create_alerts
 
 # Expose port
@@ -30,7 +27,3 @@ ADD crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
 RUN touch /var/log/cron.log
 RUN /usr/bin/crontab /etc/cron.d/crontab
-
-# Serving
-CMD python3 manage.py check_alerts 2019-02-17 \
-    && python3 /opt/alertsystem/manage.py runserver
