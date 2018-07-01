@@ -1,6 +1,4 @@
-import json
 from datetime import datetime
-import redis
 from django.core.management.base import BaseCommand
 
 from alerts.models import Alert
@@ -18,5 +16,5 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         active_alerts = [alert.id for alert in Alert.objects.all() if alert.is_active(options.get("date"))]
-        print("{cnt} alert(s) is/are active today".format(cnt=len(active_alerts)))
+        print("{cnt} alert(s) active today".format(cnt=len(active_alerts)))
         manager.set("active-alerts", active_alerts, get_end_of_day())

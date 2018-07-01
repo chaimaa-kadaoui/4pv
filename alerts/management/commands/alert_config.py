@@ -8,8 +8,8 @@ base_alert = {
 base_name = "{data}-first-quarter-2019-PEL-R320-Z001-alert"
 
 data_threshs = [
-    ["suggested_price", 91.53],
-    ["available_resources", 39]
+    ["suggested_price", "smart"],
+    ["available_resources", "smart"]
 ]
 
 alerts = []

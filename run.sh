@@ -1,5 +1,3 @@
-DAY=$1
-
 if [ -z "$1" ]; then
     DAY=$(date +"%Y-%m-%d")
 else
