@@ -1,8 +1,8 @@
 # Alert system
 
-Instructions [here](INSTRUCTIONS.md)
-Create & manage alerts on data
-Using *django* and *django REST framework*
+Create & manage alerts <br>
+Instructions [here](INSTRUCTIONS.md) <br>
+Using *python3*, *django* and *django REST framework*
 
 ## Usage
 
@@ -10,7 +10,7 @@ Using *django* and *django REST framework*
 
 * `pip3 install -r requirements.txt`
 * [optional] Run `python3 manage.py create_alerts` to create the alerts described 
-in [alerts/management/commands/alert_config.py](alert_config.py) or you can create your own alerts after running the server
+in [alerts/management/commands/alert_config.py](alert_config.py) or you can create your own alerts after running the server <br>
 * Run `python3 manage.py check_alerts` to check active alerts. 
 You can also provide a specific date `python3 manage.py check_alerts --date 2019-02-17`
 * Run `python3 manage.py runserver` to launch the server. You can request the alerts API endpoints:
@@ -21,7 +21,7 @@ You can also provide a specific date `python3 manage.py check_alerts --date 2019
 ### Using docker
 
 * Build using docker `docker build -t alert-system .`
-* Run the image providing the date of the checks `docker run -p 8000:8000 -d alert-system ./run.sh 2019-02-17`
+* Run the image providing the date of the checks `docker run -p 8000:8000 -d alert-system ./run.sh 2019-02-17` <br>
 You can leave it blank for today
 * Request the API to manage alerts
 
