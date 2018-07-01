@@ -47,5 +47,6 @@ For now, basic rules are applied:
 
 ## TODO:
 * analyze further the time series: extract repetition of patterns like weekends & period of the year
+* provide alerts with messages explaining why they were activated
 * add authentification
 * add tests
