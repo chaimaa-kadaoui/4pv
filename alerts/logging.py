@@ -11,4 +11,4 @@ def setup_logging(log_file):
     logger.setLevel(logging.INFO)
     return logger
 
-logger = setup_logging("/var/log/cron.log")
+logger = setup_logging("/var/log/alerts.log")

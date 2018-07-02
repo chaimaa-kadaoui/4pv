@@ -25,5 +25,5 @@ EXPOSE 8000
 ## Crons
 ADD scripts/crontab /etc/cron.d/crontab
 RUN chmod 0644 /etc/cron.d/crontab
-RUN touch /var/log/cron.log
+RUN touch /var/log/alerts.log
 RUN /usr/bin/crontab /etc/cron.d/crontab
