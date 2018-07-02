@@ -14,6 +14,7 @@ MONITORED = (
     ("available_resources", "Stock disponible"),
 )
 
+
 class Alert(models.Model):
     id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=MAX_LENGTH, unique=True)

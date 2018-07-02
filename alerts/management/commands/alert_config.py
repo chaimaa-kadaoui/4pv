@@ -15,7 +15,6 @@ data_conditions = [
 
 alerts = []
 for to_monitor, condition in data_conditions:
-    print(to_monitor)
     new_alert = base_alert.copy()  # No need for deepcopy
     new_alert.update({
         "name": base_name.format(data=to_monitor),

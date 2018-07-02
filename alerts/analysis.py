@@ -1,6 +1,8 @@
 from datetime import datetime
 import pandas as pd
 
+from alerts.logging import logger
+
 
 SOURCE_FILES = {
     "suggested_price": "data/prices.csv",
@@ -23,13 +25,13 @@ def check_condition(alert, date=None):
     if date is None:
         date = datetime.now().date()
     if not check_date(alert, date):
-        print("{date} is out of alert {id}'s date range".format(date=date, id=alert.id))
+        logger.warning("{date} is out of alert {id}'s date range".format(date=date, id=alert.id))
         return
 
     data = read_data(alert, date_field)
     filtered_data = filter_data(data, alert, date_field)
     if len(filtered_data) == 0:
-        print("Nothing to monitor")
+        logger.warning("Nothing to monitor")
         return
 
     if "yield_class_agg" in data.columns:
@@ -64,6 +66,9 @@ def filter_data(data, alert, date_field):
 
 
 def apply_condition(data, alert, filtered_data, date, date_field):
+    if alert.condition == "smart" and alert.data == "error":
+        logger.warning("Smart check not available yet for error data")
+        return
     if alert.condition == "smart":
         return get_smart_checks(alert)(data, filtered_data, date, date_field)
     return below_thresh(filtered_data, alert.data, alert.condition, date, date_field)

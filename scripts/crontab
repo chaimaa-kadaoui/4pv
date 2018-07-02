@@ -1,2 +1,2 @@
-0 3 * * * /opt/alertsystem/scripts/alerts_check.sh
+0 3 * * * python3 /opt/alertsystem/manage.py check_alerts
 # Empty line at the end must be kept
