@@ -41,10 +41,12 @@ An alert has the following properties:
 ### About "smart" mode
 
 For now, basic rules are applied:
-* For stocks: their value is constant throughout de days so we check if we are below the median or not
+* For stocks: their value is constant throughout the days so we check if we are below the median or not
 * For price: we check if the value is below the average minus the standard deviation
 * For reco: same as price but each segment is treated separately; an alert is active if one check fails for each one of the segments
 
-# TODO:
+## TODO:
 * analyze further the time series: extract repetition of patterns like weekends & period of the year
+* provide alerts with messages explaining why they were activated
 * add authentification
+* add tests
