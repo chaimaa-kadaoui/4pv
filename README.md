@@ -16,7 +16,8 @@ You can also provide a specific date: `python3 manage.py check_alerts --date 201
 * Run `python3 manage.py runserver` to launch the server. You can request the alerts API endpoints:
   * **GET** `host:port/alerts` to list all alerts
   * **GET/POST/PUT/DELETE** `host:port/alerts/[id]` to manage a specific alert
-  * **GET** `host:port/alerts-active` to list all active alerts
+  * **GET** `host:port/alerts-active` to list all active alerts <br>
+  *Note:* this doesn't actually run the checks; they should have been executed with the command in the previous step
 
 ### Using docker
 
@@ -24,6 +25,8 @@ You can also provide a specific date: `python3 manage.py check_alerts --date 201
 * Run the image providing the date of the checks `docker run -p 8000:8000 -d alert-system ./run.sh 2019-02-17` <br>
 You can leave it blank for today `docker run -p 8000:8000 -d alert-system ./run.sh`
 * Request the API to manage alerts
+
+Since we want to check for active alerts each day, a cron is setup to be executed each day
 
 ## Alert model
 
