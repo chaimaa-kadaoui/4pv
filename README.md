@@ -50,3 +50,4 @@ For now, basic rules are applied:
 * provide alerts with messages explaining why they were activated
 * add authentification
 * add tests
+* add better handling of errors; eg what happens when a date is provided with the wrong format ? 
