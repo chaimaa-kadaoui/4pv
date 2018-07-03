@@ -16,7 +16,7 @@ class AlertDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = AlertSerializer
 
 
-class ActiveAlertList(generics.ListCreateAPIView):
+class ActiveAlertList(generics.ListAPIView):
     serializer_class = AlertSerializer
 
     def get_queryset(self):
