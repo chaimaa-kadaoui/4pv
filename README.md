@@ -14,8 +14,9 @@ in [alert_config.py](alerts/management/commands/alert_config.py) or you can crea
 * Run `python3 manage.py check_alerts` to check active alerts. 
 You can also provide a specific date: `python3 manage.py check_alerts --date 2019-02-17`
 * Run `python3 manage.py runserver` to launch the server. You can request the alerts API endpoints:
-  * **GET** `host:port/alerts` to list all alerts
-  * **GET/POST/PUT/DELETE** `host:port/alerts/[id]` to manage a specific alert
+  * **GET/POST** `host:port/alerts/` to list all alerts <br>
+  *Note:* the slash at the end is important
+  * **GET/PUT/DELETE** `host:port/alerts/[id]` to manage a specific alert
   * **GET** `host:port/alerts-active` to list all active alerts <br>
   *Note:* this doesn't actually run the checks; they should have been executed with the command in the previous step
 
@@ -53,4 +54,4 @@ For now, basic rules are applied:
 * provide alerts with messages explaining why they were activated
 * add authentification
 * add tests
-* add better handling of errors; eg what happens when a date is provided with the wrong format ? 
+* add better handling of errors; eg what happens when a date is provided with the wrong format ? or when a condition isn't a number nor equal to "smart" ? 
